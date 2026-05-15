@@ -1,3 +1,4 @@
+# Taught about github
 
 import matplotlib.pyplot as plt
 #   Today we will implement linear regression on some data
