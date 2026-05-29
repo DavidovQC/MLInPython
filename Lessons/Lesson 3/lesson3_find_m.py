@@ -1,5 +1,15 @@
 # Taught about github
 
+# git init <- starts a git repo on your computer
+# git add . <- adds all files into the current git
+# git commit -m "message" <- commits the current state of your directory
+# git push <- push onto github
+# mkdir folder <- make a directory called folder
+# cd folder<- change directory into folder
+# ni file.py <- new item named file with type .py // note: "touch" on Mac equivalent
+# del filename.txt <- delete filename.txt
+# rd folder <- remove directory named folder
+
 import matplotlib.pyplot as plt
 #   Today we will implement linear regression on some data
 data = [
@@ -64,10 +74,10 @@ def compute_error(m):
     return error
 
 
-for i in range(10000):
+for i in range(1000000):
     dE_dm = derivative(compute_error, m)
     m -= learning_rate * dE_dm
-    error = compute_error(data, m)
+    error = compute_error(m)
 
     print()
     print("dE_dm", dE_dm)
@@ -79,39 +89,17 @@ for i in range(10000):
         break
 
 
-# Plot line
+def best_fit_slope(data):
+    XY = 0
+    X2 = 0
+    for (xi, yi) in data:
+        XY += xi * yi
+        X2 += xi * xi
 
-x = []
-y = []
-
-for pt in data:
-    x.append(pt[0])
-    y.append(pt[1])
-
-
-def find_best_fit_slope(data):
-    sumXY = 0
-    sumX2 = 0
-    for x, y in data:
-        sumXY += x*y
-        sumX2 += x**2
-
-    return sumXY / sumX2
+    return XY/X2
 
 
-print("True best fit slope is", find_best_fit_slope(data))
+true_best_fit_slope = best_fit_slope(data)
 
-plt.scatter(x, y)
-
-plt.xlabel("Square Feet")
-plt.ylabel("Price")
-plt.title("House Prices vs Square Footage")
-
-# Domain of the line:
-x_line = [min(x), max(x)]
-# Range:
-y_line = [m * x for x in x_line]
-
-plt.plot(x_line, y_line, color='red')
-
-plt.show()
+print("True best fit slope is: ", true_best_fit_slope)
+print("True error", true_best_fit_slope - m)
