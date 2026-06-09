@@ -58,6 +58,20 @@ def gradient(f, point, h=1e-4):
     return grad
 
 
+# def exact_gradient(vec):
+#     m, b = vec
+
+#     dE_dm = 0
+#     dE_db = 0
+
+#     for x, y in data:
+#         residual = m*x + b - y
+
+#         dE_dm += 2 * residual * x
+#         dE_db += 2 * residual
+
+#     return [dE_dm, dE_db]
+
 def compute_error(vec):
     error = 0
 
